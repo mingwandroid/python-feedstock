@@ -22,9 +22,11 @@ source:
     - mingw-w64--DMS_WINXX.patch
     - win-msc_ver-1900.patch
     - fix-ABI-issue29943.patch
+    # - https://bugs.python.org/issue22724 (rebased to 3.6.1 and autoreconf'ed)
+    - py_build_environ_3.patch
 
 build:
-  number: 3
+  number: 4
   # Windows has issues updating python if conda is using files itself.
   # Copy rather than link.
   no_link:
@@ -36,23 +38,32 @@ build:
     - python_branding
 
 requirements:
-  build:
+  host:
     - bzip2 1.0.*       # [unix]
     - openssl 1.0.*     # [unix]
-    - readline 6.2*     # [unix]
-    - sqlite 3.13.*     # [unix]
-    - tk 8.5.*          # [unix]
+    - readline 7.*      # [unix]
+    - sqlite 3.16.*     # [unix]
+    - tk 8.6.*          # [unix]
     - xz 5.2.*          # [unix]
     - zlib 1.2.*        # [unix]
     - ncurses 6.0*      # [linux]
+    - libffi 3.2.*      # [unix]
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - {{ cdt('xorg-x11-proto-devel') }}
+    - {{ cdt('libx11-devel') }}
+    - pkg-config
   run:
+    - bzip2 1.0.*       # [unix]
     - openssl 1.0.*     # [unix]
-    - readline 6.2*     # [unix]
-    - sqlite 3.13.*     # [unix]
-    - tk 8.5.*          # [unix]
+    - readline 7.*      # [unix]
+    - sqlite 3.16.*     # [unix]
+    - tk 8.6.*          # [unix]
     - xz 5.2.*          # [unix]
     - zlib 1.2.*        # [unix]
     - ncurses 6.0*      # [linux]
+    - libffi 3.2.*      # [unix]
     - vs2015_runtime    # [win]
 
 test:
@@ -76,3 +87,4 @@ extra:
     - msarahan
     - pelson
     - ocefpaf
+    - mingwandroid
