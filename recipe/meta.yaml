@@ -44,7 +44,7 @@ requirements:
     - tk 8.5.*          # [unix]
     - xz 5.2.*          # [unix]
     - zlib 1.2.*        # [unix]
-    - ncurses 5.9*      # [linux]
+    - ncurses 6.0*      # [linux]
   run:
     - openssl 1.0.*     # [unix]
     - readline 6.2*     # [unix]
@@ -52,7 +52,7 @@ requirements:
     - tk 8.5.*          # [unix]
     - xz 5.2.*          # [unix]
     - zlib 1.2.*        # [unix]
-    - ncurses 5.9*      # [linux]
+    - ncurses 6.0*      # [linux]
     - vs2015_runtime    # [win]
 
 test:
