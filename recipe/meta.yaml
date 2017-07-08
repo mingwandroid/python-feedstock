@@ -67,6 +67,12 @@ requirements:
     - vs2015_runtime    # [win]
 
 test:
+  files:
+    - python_test.py
+  requires:
+    - {{ cdt('libx11') }}
+    - {{ cdt('libxcb') }}
+    - {{ cdt('libxau') }}
   commands:
     - python -V
     - python3 -V            # [unix]
